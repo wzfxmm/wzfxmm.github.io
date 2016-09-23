@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -41,22 +41,20 @@
 <body>
     <div class="init-loading page-loading"><i class="loading-progress">悦享投资之美</i></div>
     <div class="container"></div>
-
-    <!--初始化微信账户绑定视图-->
-<script type="text/html" id="tpl_init">
-<section class="" style="background: #F5F5F7">
-    <ul class="ul-moneyInfo padding-lrb-10 size-12">
+<script type="text/html" id="tpl_main">
+<section  style="background: #F5F5F7">
+    <ul class="ul-moneyInfo padding-lrb-10 size-12" id="ulMarginInfo">
         <li class="ul-moneyInfo_title color-white">
             <i class="demo-icon ul-moneyInfo_title ">&#xe803;</i>
-            <span class="color_EBEBEB">信用账户23232331312</span>
+            <span class="color_EBEBEB">信用账户<span id="lblFundAccount"></span></span>
         </li>
         <li>
             <span class="block color-white size-14">本金负债（元）</span>
-            <span class="block size-36" style="line-height: 40px">10,000,100.00</span>
+            <span class="block size-36" style="line-height: 40px;display: inline-block;width: 100%" id="lblTotalDebtAmt"></span>
         </li>
         <li>
             <span class="block color-white size-14 opacity_08">利息负债（元）</span>
-            <span class="block size-17">10000.00</span>
+            <span class="block size-17" style="display: inline-block;width: 100%" id="lblInterestFeeDebtAmt"></span>
         </li>
         <li class="textCenter size-12">
             <span><span class="lineae"></span></span>
@@ -64,218 +62,47 @@
             <span><span class="lineae"></span></span>
         </li>
     </ul>
-        <div class="ui-tab  margin-t-10">
-            <ul id="ui-tab_li" class="ui-tab-nav ui-border-b size-15">
-                <li class="tab current" data-curpage="0">融资仓单</li>
-                <li class="tab" data-curpage="1">融券仓单</li>
-            </ul>
-            <ul class="ui-tab-content  color-101010" id="ui-tab-content" style="width:200%">
-                <li class="current">
-                    <div  class="current_title">
-                        <div class="ui-border-b tipInfo size-14">
-                            <span>
-                                未来30日 融资应还本金
-                            </span>
-                            <div class="select">
-                                <span class="tirangle"></span>
-                                <span class="date">30日</span>
-                            </div>
+    <div class="ui-tab  margin-t-10" id="tabOrder">
+        <ul id="ui-tab_li" class="ui-tab-nav ui-border-b size-15">
+            <li class="tab current" data-curpage="0" id="rzTab">融资仓单</li>
+            <li class="tab" data-curpage="1" id="rqTab">融券仓单</li>
+        </ul>
+        <ul class="ui-tab-content  color-101010" id="ui-tab-content" style="width:200%">
+            <li class="current">
+                <div  class="current_title">
+                    <div class="ui-border-b tipInfo size-14">
+                                <span>
+                                    未来30日 融资应还本金
+                                </span>
+                        <div class="select">
+                            <span class="tirangle"></span>
+                            <span class="date">30日</span>
                         </div>
                     </div>
-                    <div id="tab1_content" class="padding-tb-10">
-                        <ul>
-                            <li>
-                              <h5>100,000.00元 <span>(东方证券)</span><span class="arrears">已逾期</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <div class="seeMore" id="c_more" data-curpage="0">
-                                    查看更多
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="current">
-                    <div  class="current_title">
-                        <div class="ui-border-b tipInfo size-14">
-                            <span>
-                                未来30日 融资应还股2
-                            </span>
-                            <div class="select">
-                                <span class="tirangle"></span>
-                                <span class="date">30日</span>
-                            </div>
+                </div>
+                <div id="tab1_content" class="padding-tb-10">
+                    <ul id="rzList"></ul>
+                </div>
+            </li>
+            <li class="current">
+                <div  class="current_title">
+                    <div class="ui-border-b tipInfo size-14">
+                                <span>
+                                    未来30日 融资应还股2
+                                </span>
+                        <div class="select">
+                            <span class="tirangle"></span>
+                            <span class="date">30日</span>
                         </div>
                     </div>
-                    <div id="tab2_content" class="padding-tb-10">
-                        <ul>
-                            <li>
-                                <h5>100,000股 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000股 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000股 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000股 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000股 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000股 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000股 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000股 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000股 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000股 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000股 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000股 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000股 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000股 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <h5>100,000.00元 <span>(东方证券)</span></h5>
-                                <h6 class="timeColor">2016/09/09</h6>
-                            </li>
-                            <li>
-                                <div class="seeMore" id="q_more" data-curpage="1">
-                                    查看更多
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </div>
+                </div>
+                <div id="tab2_content" class="padding-tb-10">
+                    <ul id="rqList">
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
     <div id="ui-footer" class="ui-footer ui-footer-stable ui-btn-group" style="z-index: 1">
         <div class="ui-row-flex">
             <div class="ui-col ui-col" onclick="alert('111');">我要归还</div>
@@ -284,29 +111,28 @@
     </div>
     <div id="bell" class="bell">
         <span id="scale"></span>
-        <span class="bell_content">
-            <i class="demo-icon bell_i">&#xe802;</i>
-            <span>订阅</span>
-        </span>
+            <span class="bell_content">
+                <i class="demo-icon bell_i">&#xe802;</i>
+                <span>订阅</span>
+            </span>
     </div>
 </section>
 </script>
 
-    <!--初始化微信账户绑定结果视图-->
-<script type="text/html" id="tpl_result">
-<section id="more_list" class="" style="z-index: 2">
-    <div class="ui-tab ui-mtab">
+<script type="text/html" id="tpl_list">
+<section id="more_list">
+    <div class="ui-tab ui-mtab" id="tabOrderList">
         <ul id="ui-tab_mli" class="ui-tab-nav ui-border-b size-15">
             <li class="mtab current" data-curpage="0">融资仓单</li>
             <li class="mtab" data-curpage="1">融券仓单</li>
         </ul>
-        <ul class="ui-tab-content  color-101010" id="ui-tab-mcontent" style="width:200%">
+        <ul class="ui-tab-content color-101010" id="ui-tab-mcontent" style="width:200%">
             <li class="current">
                 <div  class="current_title">
                     <div class="ui-border-b tipInfo size-14">
-                            <span>
-                                未来30日 融资应还本金
-                            </span>
+                                <span>
+                                    未来30日 融资应还本金
+                                </span>
                         <div class="select">
                             <span class="tirangle"></span>
                             <span class="date">30日</span>
@@ -401,13 +227,13 @@
             <li class="current">
                 <div  class="current_title">
                     <div class="ui-border-b tipInfo size-14">
-                            <span>
-                                未来30日 融资应还股2
-                            </span>
-                            <div class="select">
-                                <span class="tirangle"></span>
-                                <span class="date">30日</span>
-                            </div>
+                                <span>
+                                    未来30日 融资应还股2
+                                </span>
+                        <div class="select">
+                            <span class="tirangle"></span>
+                            <span class="date">30日</span>
+                        </div>
                     </div>
                 </div>
                 <div id="tab2_mcontent" class="padding-tb-10">
@@ -497,33 +323,32 @@
 </section>
 </script>
 
-    <!-- build:js scripts/orientsec-OBMobi-style.js -->
-    <script src="../orientsec-OBMobi-style.js"></script>
-    <!-- endbuild -->
+<script type="text/html" id="tpl_listCell">
 
-    <!-- build:js scripts/orientsec-OBMobi-passGuard-style.js -->
-    <script src="../orientsec-OBMobi-passGuard-style.js"></script>
-    <!-- endbuild -->
+    <li>
+        <h5>
+            <%=yetPaybackAmt%>元
+            <span>(<%=secName%>)</span>
+            <span class="arrears">已逾期</span>
+        </h5>
+        <h6 class="timeColor">2016/09/09</h6>
+    </li>
 
-    <!-- build:js scripts/account/list/style.js -->
-    <script src="../scripts/modules/account/list/style.js"></script>
-    <!-- endbuild -->
-
-    <!-- build:js scripts/orientsec-OBMobi.js -->
-    <script src="../orientsec-OBMobi.js"></script>
-    <!-- endbuild -->
-
-    <!-- build:js scripts/orientsec-OBMobi-passGuard.js -->
-    <script src="../orientsec-OBMobi-passGuard.js"></script>
-    <!-- endbuild -->
-
-    <!-- build:js scripts/orientsec-OBMobi-dataBinding.js -->
-    <script src="../orientsec-OBMobi-dataBinding.js"></script>
-    <!-- endbuild -->
-
-    <!-- build:js scripts/account/list/main.js -->
-    <script src="../scripts/modules/account/list/viewController.js"></script>
-    <!-- endbuild -->
-
+</script>
 </body>
+<!-- build:js scripts/orientsec-OBMobi.js -->
+<script src="../orientsec-OBMobi.js"></script>
+<!-- endbuild -->
+<!-- build:js scripts/bindStart/orientsec-OBMobi-style.js -->
+<script src="../orientsec-OBMobi-style.js"></script>
+<!-- endbuild -->
+<!-- build:js scripts/orientsec-OBMobi-dataBinding.js -->
+<script src="../orientsec-OBMobi-dataBinding.js"></script>
+<!-- endbuild -->
+<!-- build:js scripts/margin/order/main.js -->
+<script src="../scripts/modules/margin/order/viewController.js"></script>
+<!-- endbuild -->
+<!-- build:js scripts/margin/order/style.js -->
+<script src="../scripts/modules/margin/order/style.js"></script>
+<!-- endbuild -->
 </html>

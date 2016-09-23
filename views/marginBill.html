@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>东方证券股份有限公司</title>
-    <meta name="description" content="东方证券股份有限公司">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <title>东方证券·微信账户绑定</title>
+    <meta name="description" content="东方证券·微信账户绑定">
     <link rel="icon" type="images/x-icon" href="../favicon.ico">
     <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-    <!--preloading css-->
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
     <style>
         body{
             margin:0;
             font-family:'Helvetica Neue',Helvetica,Arial,'Hiragino Sans GB','Microsoft Yahei',STXihei,SimHei,'WenQuanYi Micro Hei','Droid Sans',sans-serif
         }
-        .init-loading
-        {
+        .init-loading{
             position:fixed;
             z-index:999;
             width:100%;
@@ -37,138 +38,233 @@
         }
     </style>
 </head>
-<body style="height: 100%;overflow: hidden;">
-<!--preloading html-->
+<body>
 <div class="init-loading page-loading"><i class="loading-progress">悦享投资之美</i></div>
 <div class="container"></div>
 
-<script type="text/html" id="main">
-    <div class="fragment">
-        <div class="height_100">
-        <div>
-            <section>
-                <div class="ui-tab detailTab">
-                    <ul class="ui-tab-nav detailTab__changeTab">
-                        <li class="current">日</li>
-                        <li>月</li>
-                    </ul>
-                    <ul class="ui-tab-content detailTab__content">
-                        <li class="current">
-                            <ul class="numberDetail ui-row ui-whitespace">
-                                <li class="ui-col ui-col-50 numberDetail__border">
-                                    <h4>净资产（元）</h4>
-                                    <h1 class="big-num">1000020.00</h1>
-                                    <h6 class="totalPage">资产合计</h6>
-                                    <h5 class="totalPage">1000.00</h5>
-                                </li>
-                                <li class="ui-col ui-col-50">
-                                    <h4>维持担保比例<i class="icon-question"></i></h4>
-                                    <h1 class="big-num">1000010.00%</h1>
-                                    <h6 class="totalPage">负债合计</h6>
-                                    <h5 class="totalPage">1000.00</h5>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <ul class="numberDetail ui-row ui-whitespace">
-                                <li class="ui-col ui-col-50 numberDetail__border">
-                                    <h4>净资产（元）</h4>
-                                    <h1 class="big-num">2000020.00</h1>
-                                    <h6 class="totalPage">资产合计</h6>
-                                    <h5 class="totalPage">1000.00</h5>
-                                </li>
-                                <li class="ui-col ui-col-50">
-                                    <h4>维持担保比例<i class="icon-question"></i></h4>
-                                    <h1 class="big-num">2000010.00%</h1>
-                                    <h6 class="totalPage">负债合计</h6>
-                                    <h5 class="totalPage">1000.00</h5>
-                                </li>
-                            </ul>
-                            <div class="ui-row-flex month-block">
-                                <div class="ui-col">
-                                    <i class="icon-khjytz"></i>
-                                    <h6>客户交易特征</h6>
-                                </div>
-                                <div class="ui-col">
-                                    <i class="icon-lxfy interestPage"></i>
-                                    <h6 class="interestPage">利息费用</h6>
-                                </div>
-                                <div class="ui-col">
-                                    <i class="icon-mrfz"></i>
-                                    <h6>当月每日资产<br />负债情况</h6>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+<!--对账单长页面-->
+<script type="text/html" id="tpl_detail">
+<section>
+    <div class="ui-tab detailTab">
+        <ul class="ui-tab-nav detailTab__changeTab">
+            <li class="current">日</li>
+            <li>月</li>
+        </ul>
+        <ul class="ui-tab-content detailTab__content">
+            <li class="current">
+                <ul class="numberDetail ui-row ui-whitespace">
+                    <li class="ui-col ui-col-50 numberDetail__border">
+                        <h4>净资产（元）</h4>
+                        <h1 class="big-num">1000020.00</h1>
+                        <h5 class="totalPage">资产合计</h5>
+                        <h5 class="totalPage">1000.00</h5>
+                    </li>
+                    <li class="ui-col ui-col-50">
+                        <h4>维持担保比例<i class="icon-question"></i></h4>
+                        <h1 class="big-num">1000010.00%</h1>
+                        <h5 class="totalPage">负债合计</h5>
+                        <h5 class="totalPage">1000.00</h5>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul class="numberDetail ui-row ui-whitespace">
+                    <li class="ui-col ui-col-50 numberDetail__border">
+                        <h4>净资产（元）</h4>
+                        <h1 class="big-num">2000020.00</h1>
+                        <h5 class="totalPage">资产合计</h5>
+                        <h5 class="totalPage">1000.00</h5>
+                    </li>
+                    <li class="ui-col ui-col-50">
+                        <h4>维持担保比例<i class="icon-question"></i></h4>
+                        <h1 class="big-num">2000010.00%</h1>
+                        <h5 class="totalPage">负债合计</h5>
+                        <h5 class="totalPage">1000.00</h5>
+                    </li>
+                </ul>
+                <div class="ui-row-flex month-block">
+                    <div class="ui-col">
+                        <i class="icon-khjytz"></i>
+                        <h6>客户交易特征</h6>
+                    </div>
+                    <div class="ui-col">
+                        <i class="icon-lxfy interestPage"></i>
+                        <h6 class="interestPage">利息费用</h6>
+                    </div>
+                    <div class="ui-col">
+                        <i class="icon-mrfz"></i>
+                        <h6>当月每日资产<br />负债情况</h6>
+                    </div>
                 </div>
-            </section>
-            <section class="table-section ui-border-b">
-                <div class="table-section__header">
-                    <h6 class="table-section__header__title">信用账户负债及各行业持仓占比</h6>
-                    <span class="table-section__header__arrow table-section__header__arrow--fold"></span>
-                </div>
-                <div class="ui-tab table-section__body chart-section red-nav nav-border">
-                    <ul class="ui-tab-nav ui-whitespace">
-                        <li class="current">信用账户资产负债</li>
-                        <li>各行业持仓占比</li>
-                    </ul>
-                    <ul class="ui-tab-content">
-                        <li class="current">
-                            <div id="pieChart1" style="height:150px;"></div>
-                        </li>
-                        <li>
-                            <div id="pieChart2" style="height:150px;"></div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="table-section__footer">
-                    <h6 class="table-section__footer__text">按照证监会行业分类划分客户当前持股行业，持仓市值占比排名前四的行业。<br />计算方式：百分比：股数*收盘价/总股票市值。<br />数据来源：现有对账单的证券资产明细，wind的行业分类表</h6>
-                </div>
-            </section>
-            <section class="table-section ui-border-b">
-                <div class="table-section__header ">
-                    <h6 class="table-section__header__title">未来30日到期负债明细</h6>
-                    <span class="table-section__header__arrow table-section__header__arrow--fold"></span>
-                </div>
-                <div class="table-section__body">
-
-                </div>
-            </section>
-            <section class="table-section ui-border-b">
-                <div class="table-section__header table-section__header--noborder">
-                    <h6 class="table-section__header__title">客户资产明细</h6>
-                    <span class="table-section__header__arrow table-section__header__arrow--fold"></span>
-                </div>
-                <div class="table-section__body">
-                    
-                </div>
-            </section>
-            <section class="table-section ui-border-b">
-                <div class="table-section__header">
-                    <h6 class="table-section__header__title">融资负债明细</h6>
-                    <span class="table-section__header__arrow table-section__header__arrow--fold"></span>
-                </div>
-                <div class="table-section__body">
-                    
-                </div>
-            </section>
-            <section class="table-section ui-border-b">
-                <div class="table-section__header">
-                    <h6 class="table-section__header__title">融券负债明细</h6>
-                    <span class="table-section__header__arrow table-section__header__arrow--fold"></span>
-                </div>
-                <div class="table-section__body">
-                    
-                </div>
-            </section>
-        </div>
-        </div>
-        <div class="celendar-block">
-            <input type="date" id="inputDate"/>
-            <input type="month" min="2016-03" max="2016-08" id="inputMonth"/>
-            <i class="icon-celendar"></i>
-        </div>
+            </li>
+        </ul>
     </div>
+</section>
+<section class="table-section ui-border-b">
+    <div class="table-section__header">
+        <h6 class="table-section__header__title">信用账户负债及各行业持仓占比</h6>
+        <span class="table-section__header__arrow table-section__header__arrow--fold"></span>
+    </div>
+    <div class="ui-tab table-section__body chart-section red-nav nav-border">
+        <ul class="ui-tab-nav ui-whitespace">
+            <li class="current">信用账户资产负债</li>
+            <li>各行业持仓占比</li>
+        </ul>
+        <ul class="ui-tab-content">
+            <li class="current">
+                <div id="pieChart1" style="height:150px;"></div>
+            </li>
+            <li>
+                <div id="pieChart2" style="height:150px;"></div>
+            </li>
+        </ul>
+    </div>
+    <div class="table-section__footer">
+        <h6 class="table-section__footer__text">按照证监会行业分类划分客户当前持股行业，持仓市值占比排名前四的行业。<br />计算方式：百分比：股数*收盘价/总股票市值。<br />数据来源：现有对账单的证券资产明细，wind的行业分类表</h6>
+    </div>
+</section>
+<section class="table-section ui-border-b">
+    <div class="table-section__header ">
+        <h6 class="table-section__header__title">未来30日到期负债明细</h6>
+        <span class="table-section__header__arrow table-section__header__arrow--fold"></span>
+    </div>
+    <div class="table-section__body">
+
+    </div>
+</section>
+<section class="table-section ui-border-b">
+    <div class="table-section__header table-section__header--noborder">
+        <h6 class="table-section__header__title">客户资产明细</h6>
+        <span class="table-section__header__arrow table-section__header__arrow--fold"></span>
+    </div>
+    <div class="table-section__body">
+
+    </div>
+</section>
+<section class="table-section ui-border-b">
+    <div class="table-section__header">
+        <h6 class="table-section__header__title">融资负债明细</h6>
+        <span class="table-section__header__arrow table-section__header__arrow--fold"></span>
+    </div>
+    <div class="table-section__body">
+
+    </div>
+</section>
+<section class="table-section ui-border-b">
+    <div class="table-section__header">
+        <h6 class="table-section__header__title">融券负债明细</h6>
+        <span class="table-section__header__arrow table-section__header__arrow--fold"></span>
+    </div>
+    <div class="table-section__body">
+
+    </div>
+</section>
+<div class="celendar-block">
+    <input type="date" id="inputDate"/>
+    <input type="month" min="2016-03" max="2016-08" id="inputMonth"/>
+    <i class="icon-celendar"></i>
+</div>
+</script>
+
+<!--未来30日表格-->
+<script type="text/html" id="tpl_future">
+<div class="height_100">
+    <div class="ui-tab future-section red-nav">
+        <ul class="ui-tab-nav ui-whitespace">
+            <li class="current">融资负债</li>
+            <li>融券负债</li>
+        </ul>
+        <ul class="ui-tab-content">
+            <li class="current">
+                <table class="ob-table table-bordered table-fill">
+                    <tr>
+                        <th>最晚偿还日</th>
+                        <th>融资买入标的</th>
+                        <th>尚未归还融资负债</th>
+                    </tr>
+                    <tr>
+                        <td>16-04-05</td>
+                        <td>上海贝岭1</td>
+                        <td>68735.72</td>
+                    </tr>
+                    <tr>
+                        <td>16-04-05</td>
+                        <td>上海贝岭2</td>
+                        <td>68735.72</td>
+                    </tr>
+                    <tr>
+                        <td>16-04-05</td>
+                        <td>上海贝岭3</td>
+                        <td>68735.72</td>
+                    </tr>
+                    <tr>
+                        <td>16-04-05</td>
+                        <td>上海贝岭4</td>
+                        <td>68735.72</td>
+                    </tr>
+                    <tr>
+                        <td>16-04-05</td>
+                        <td>上海贝岭5</td>
+                        <td>68735.72</td>
+                    </tr>
+                </table>
+            </li>
+            <li>
+                <table class="ob-table table-bordered table-fill">
+                    <tr>
+                        <th>最晚偿还日</th>
+                        <th>融资买入标的</th>
+                        <th>尚未归还融资负债</th>
+                    </tr>
+                    <tr>
+                        <td>16-04-05</td>
+                        <td>上海贝岭6</td>
+                        <td>68735.72</td>
+                    </tr>
+                    <tr>
+                        <td>16-04-05</td>
+                        <td>上海贝岭7</td>
+                        <td>68735.72</td>
+                    </tr>
+                    <tr>
+                        <td>16-04-05</td>
+                        <td>上海贝岭8</td>
+                        <td>68735.72</td>
+                    </tr>
+                    <tr>
+                        <td>16-04-05</td>
+                        <td>上海贝岭9</td>
+                        <td>68735.72</td>
+                    </tr>
+                    <tr>
+                        <td>16-04-05</td>
+                        <td>上海贝岭10</td>
+                        <td>68735.72</td>
+                    </tr>
+                </table>
+            </li>
+        </ul>
+    </div>
+
+    <div class="table-section__footer">
+        <span class="table-section__footer__more">查看更多</span>
+        <h6 class="table-section__footer__text">未来30日到期负债明细，从查询日T日到T+30日的到期负债明细，合并其中同日同标的的金额，同日不同标的的金额需要分开列示。</h6>
+    </div>
+
+    <!--<div class="table-section__loading">
+        <div class="table-section__icon">icon</div>
+        <div class="text-center">正在加载...</div>
+    </div>
+    <div class="table-section__noData">
+        <div class="table-section__icon">icon</div>
+        <div class="text-center">您的帐户暂无此账单明细</div>
+    </div>
+    <div class="table-section__erro">
+        <div class="table-section__icon">icon</div>
+        <div class="text-center">加载出错</div>
+        <a href="#" class="table-section__btnRefresh">刷新</a>-->
+    </div>
+</div>
 </script>
 
 <script type="text/html" id="total">
@@ -436,112 +532,10 @@
     </div>
 </script>
 
-<script type="text/html" id="table1">
-    <div class="fragment">
-        <div class="height_100">
-            <div class="ui-tab future-section red-nav">
-                <ul class="ui-tab-nav ui-whitespace">
-                    <li class="current">融资负债</li>
-                    <li>融券负债</li>
-                </ul>
-                <ul class="ui-tab-content">
-                    <li class="current">
-                        <table class="ob-table table-bordered table-fill">
-                            <tr>
-                                <th>最晚偿还日</th>
-                                <th>融资买入标的</th>
-                                <th>尚未归还融资负债</th>
-                            </tr>
-                            <tr>
-                                <td>16-04-05</td>
-                                <td>上海贝岭1</td>
-                                <td>68735.72</td>
-                            </tr>
-                            <tr>
-                                <td>16-04-05</td>
-                                <td>上海贝岭2</td>
-                                <td>68735.72</td>
-                            </tr>
-                            <tr>
-                                <td>16-04-05</td>
-                                <td>上海贝岭3</td>
-                                <td>68735.72</td>
-                            </tr>
-                            <tr>
-                                <td>16-04-05</td>
-                                <td>上海贝岭4</td>
-                                <td>68735.72</td>
-                            </tr>
-                            <tr>
-                                <td>16-04-05</td>
-                                <td>上海贝岭5</td>
-                                <td>68735.72</td>
-                            </tr>
-                        </table>
-                    </li>
-                    <li>
-                        <table class="ob-table table-bordered table-fill">
-                            <tr>
-                                <th>最晚偿还日</th>
-                                <th>融资买入标的</th>
-                                <th>尚未归还融资负债</th>
-                            </tr>
-                            <tr>
-                                <td>16-04-05</td>
-                                <td>上海贝岭6</td>
-                                <td>68735.72</td>
-                            </tr>
-                            <tr>
-                                <td>16-04-05</td>
-                                <td>上海贝岭7</td>
-                                <td>68735.72</td>
-                            </tr>
-                            <tr>
-                                <td>16-04-05</td>
-                                <td>上海贝岭8</td>
-                                <td>68735.72</td>
-                            </tr>
-                            <tr>
-                                <td>16-04-05</td>
-                                <td>上海贝岭9</td>
-                                <td>68735.72</td>
-                            </tr>
-                            <tr>
-                                <td>16-04-05</td>
-                                <td>上海贝岭10</td>
-                                <td>68735.72</td>
-                            </tr>
-                        </table>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="table-section__footer">
-                <span class="table-section__footer__more">查看更多</span>
-                <h6 class="table-section__footer__text">未来30日到期负债明细，从查询日T日到T+30日的到期负债明细，合并其中同日同标的的金额，同日不同标的的金额需要分开列示。</h6>
-            </div>
-
-            <div class="table-section__loading">
-                <div class="table-section__icon">icon</div>
-                <div class="text-center">正在加载...</div>
-            </div>
-            <div class="table-section__noData">
-                <div class="table-section__icon">icon</div>
-                <div class="text-center">您的帐户暂无此账单明细</div>
-            </div>
-            <div class="table-section__erro">
-                <div class="table-section__icon">icon</div>
-                <div class="text-center">加载出错</div>
-                <a href="#" class="table-section__btnRefresh">刷新</a>
-            </div>
-        </div>
-    </div>
-</script>
-
 <script type="text/html" id="table2">
     <div class="fragment">
         <div class="height_100">
-            <table class="responsive ob-table table-bordered" id="tableRes2">
+            <table class="responsive ob-table table-bordered">
                 <tr class="asset asset_1">
                     <td class="first-header" style="height: 66px">证券名称</td>
                     <td colspan="3" id="asset_t" class="fixed border-left-clear">持有股数</td>
@@ -550,7 +544,7 @@
                 </tr>
                 <tr class="asset">
                     <td class="frozen fixed gray border-left-clear" style="height: 33px">冲抵保证金</td>
-                    <td class="fixed" style="background:#fff;">融资买入</td>
+                    <td class="fixed">融资买入</td>
                     <td class="fixed gray">当前库存</td>
                 </tr>
                 <tr>
@@ -558,32 +552,32 @@
                     <td class="border-left-clear">11111</td>
                     <td>22222</td>
                     <td>33333</td>
-                    <td class="red">+10000</td>
-                    <td class="border-right-clear green">-20000</td>
+                    <td>+10000</td>
+                    <td class="border-right-clear">-20000</td>
                 </tr>
                 <tr>
                     <td>东方证券2</td>
                     <td class="border-left-clear">11111</td>
                     <td>22222</td>
                     <td>33333</td>
-                    <td class="red">+10000</td>
-                    <td class="border-right-clear green">-20000</td>
+                    <td>+10000</td>
+                    <td class="border-right-clear">-20000</td>
                 </tr>
                 <tr>
                     <td>东方证券3</td>
                     <td class="border-left-clear">11111</td>
                     <td>22222</td>
                     <td>33333</td>
-                    <td class="red">+10000</td>
-                    <td class="border-right-clear green">-20000</td>
+                    <td>+10000</td>
+                    <td class="border-right-clear">-20000</td>
                 </tr>
                 <tr>
                     <td>东方证券4</td>
                     <td class="border-left-clear">11111</td>
                     <td>22222</td>
                     <td>33333</td>
-                    <td class="red">+10000</td>
-                    <td class="border-right-clear green">-20000</td>
+                    <td>+10000</td>
+                    <td class="border-right-clear">-20000</td>
                 </tr>
             </table>
             <div class="table-section__footer">
@@ -604,7 +598,7 @@
                 </ul>
                 <ul class="ui-tab-content">
                     <li class="current">
-                        <table class="responsive ob-table table-bordered two-line" id="tableRes3_0">
+                        <table class="responsive ob-table table-bordered two-line">
                             <tr>
                                 <th>发生日期</th>
                                 <th>最晚偿还日</th>
@@ -614,7 +608,7 @@
                                 <th>剩余本金</th>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰1</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰1</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -622,7 +616,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰2</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰2</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -630,7 +624,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰3</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰3</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -638,7 +632,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰4</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰4</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -646,40 +640,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰5</span></td>
-                                <td>2016-03-30</td>
-                                <td>2200</td>
-                                <td>8888.88</td>
-                                <td>8888.88</td>
-                                <td>8888.88</td>
-                            </tr>
-
-                            <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰2</span></td>
-                                <td>2016-03-30</td>
-                                <td>2200</td>
-                                <td>8888.88</td>
-                                <td>8888.88</td>
-                                <td>8888.88</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰3</span></td>
-                                <td>2016-03-30</td>
-                                <td>2200</td>
-                                <td>8888.88</td>
-                                <td>8888.88</td>
-                                <td>8888.88</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰4</span></td>
-                                <td>2016-03-30</td>
-                                <td>2200</td>
-                                <td>8888.88</td>
-                                <td>8888.88</td>
-                                <td>8888.88</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰5</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰5</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -688,7 +649,7 @@
                             </tr>
 
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰2</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰2</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -696,7 +657,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰3</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰3</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -704,7 +665,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰4</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰4</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -712,7 +673,16 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰5</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰5</td>
+                                <td>2016-03-30</td>
+                                <td>2200</td>
+                                <td>8888.88</td>
+                                <td>8888.88</td>
+                                <td>8888.88</td>
+                            </tr>
+
+                            <tr>
+                                <td>2016-03-30<br />劲嘉谷峰2</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -720,7 +690,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰2</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰3</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -728,7 +698,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰3</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰4</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -736,7 +706,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰4</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰5</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -744,7 +714,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰5</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰2</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -752,7 +722,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰2</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰3</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -760,7 +730,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰3</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰4</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -768,7 +738,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰4</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰5</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -776,7 +746,31 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰5</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰2</td>
+                                <td>2016-03-30</td>
+                                <td>2200</td>
+                                <td>8888.88</td>
+                                <td>8888.88</td>
+                                <td>8888.88</td>
+                            </tr>
+                            <tr>
+                                <td>2016-03-30<br />劲嘉谷峰3</td>
+                                <td>2016-03-30</td>
+                                <td>2200</td>
+                                <td>8888.88</td>
+                                <td>8888.88</td>
+                                <td>8888.88</td>
+                            </tr>
+                            <tr>
+                                <td>2016-03-30<br />劲嘉谷峰4</td>
+                                <td>2016-03-30</td>
+                                <td>2200</td>
+                                <td>8888.88</td>
+                                <td>8888.88</td>
+                                <td>8888.88</td>
+                            </tr>
+                            <tr>
+                                <td>2016-03-30<br />劲嘉谷峰5</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -787,7 +781,7 @@
                         </table>
                     </li>
                     <li>
-                        <table class="responsive ob-table table-bordered two-line" id="tableRes3_1">
+                        <table class="responsive ob-table table-bordered two-line">
                             <tr>
                                 <th>发生日期</th>
                                 <th>最晚偿还日</th>
@@ -797,7 +791,7 @@
                                 <th>剩余本金</th>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰11</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -805,7 +799,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰221</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰22</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -813,7 +807,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰33</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -821,7 +815,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰44</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -829,7 +823,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰55</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -839,7 +833,7 @@
                         </table>
                     </li>
                     <li>
-                        <table class="responsive ob-table table-bordered two-line" id="tableRes3_2">
+                        <table class="responsive ob-table table-bordered two-line">
                             <tr>
                                 <th>发生日期</th>
                                 <th>最晚偿还日</th>
@@ -849,7 +843,7 @@
                                 <th>剩余本金</th>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰33</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰111</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -857,7 +851,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰222</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -865,7 +859,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰333</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -873,7 +867,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰444</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -881,7 +875,7 @@
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰555</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -894,9 +888,6 @@
             </div>
             <div class="table-section__footer">
                 <span class="table-section__footer__more">查看更多</span>
-            </div>
-            <div class="celendar-block">
-                <i class="icon-backTop">icon</i>
             </div>
         </div>
     </div>
@@ -913,7 +904,7 @@
                 </ul>
                 <ul class="ui-tab-content">
                     <li class="current">
-                        <table class="responsive ob-table table-bordered two-line" id="tableRes4_0">
+                        <table class="responsive ob-table table-bordered two-line">
                             <tr>
                                 <th>发生日期</th>
                                 <th>最晚偿还日</th>
@@ -922,35 +913,35 @@
                                 <th>融券余量</th>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰1</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰2</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰3</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰4</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰5</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -959,7 +950,7 @@
                         </table>
                     </li>
                     <li>
-                        <table class="responsive ob-table table-bordered two-line" id="tableRes4_1">
+                        <table class="responsive ob-table table-bordered two-line">
                             <tr>
                                 <th>发生日期</th>
                                 <th>最晚偿还日</th>
@@ -968,35 +959,35 @@
                                 <th>融券余量</th>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰11</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰22</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰33</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰44</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰55</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -1005,7 +996,7 @@
                         </table>
                     </li>
                     <li>
-                        <table class="responsive ob-table table-bordered two-line" id="tableRes4_2">
+                        <table class="responsive ob-table table-bordered two-line">
                             <tr>
                                 <th>发生日期</th>
                                 <th>最晚偿还日</th>
@@ -1014,35 +1005,35 @@
                                 <th>融券余量</th>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰111</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰222</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰333</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰444</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
                                 <td>8888.88</td>
                             </tr>
                             <tr>
-                                <td class="text-left padding-l-17">2016-03-30<br /><span class="size-10">劲嘉谷峰11</span></td>
+                                <td>2016-03-30<br />劲嘉谷峰555</td>
                                 <td>2016-03-30</td>
                                 <td>2200</td>
                                 <td>8888.88</td>
@@ -1062,14 +1053,17 @@
 <!-- build:js scripts/orientsec-OBMobi-style.js -->
 <script src="../orientsec-OBMobi-style.js"></script>
 <!-- endbuild -->
+<!-- build:js scripts/margin/bill/style.js -->
+<script src="../scripts/modules/margin/bill/style.js"></script>
+<!-- endbuild -->
 <!-- build:js scripts/orientsec-OBMobi.js -->
 <script src="../orientsec-OBMobi.js"></script>
 <!-- endbuild -->
-<!-- build:js scripts/account/accountDetail.js -->
-<script src="../scripts/modules/demo/accountDetail.js"></script>
+<!-- build:js scripts/orientsec-OBMobi-dataBinding.js -->
+<script src="../orientsec-OBMobi-dataBinding.js"></script>
 <!-- endbuild -->
-<!-- build:js scripts/account/accountDetail-style.js -->
-<script src="../scripts/modules/demo/accountDetail-style.js"></script>
+<!-- build:js scripts/margin/bill/main.js -->
+<script src="../scripts/modules/margin/bill/viewController.js"></script>
 <!-- endbuild -->
 
 </body>

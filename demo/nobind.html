@@ -1,4 +1,18 @@
-<!DOCTYPE html> <html> <head> <meta charset="UTF-8"> <meta http-equiv="x-ua-compatible" content="ie=edge"> <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"> <title>东方证券股份有限公司</title> <meta name="description" content="东方证券股份有限公司"> <meta content="yes" name="apple-mobile-web-app-capable"> <meta content="yes" name="apple-touch-fullscreen"> <meta content="telephone=no,email=no" name="format-detection"> <link rel="icon" type="images/x-icon" href="../favicon.ico"> <link rel="apple-touch-icon" href="../apple-touch-icon.png"> <style>body{
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>东方证券股份有限公司</title>
+    <meta name="description" content="东方证券股份有限公司">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <link rel="icon" type="images/x-icon" href="../favicon.ico">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <style>
+        body{
             margin:0;
             font-family:'Helvetica Neue',Helvetica,Arial,'Hiragino Sans GB','Microsoft Yahei',STXihei,SimHei,'WenQuanYi Micro Hei','Droid Sans’,sans-serif
         }
@@ -32,8 +46,9 @@
         .node{
             display: inline-block;
             width: 2px;
-            height: 16px;
-            background-color:#FED6D8
+            height: 10px;
+            background-color:#FED6D8;
+            margin-bottom: 3px;
         }
         #bank_Step{
             text-align: center;
@@ -51,5 +66,52 @@
             color: #818285;
         }
         #bank_Step{
-            margin-top: 15%;
-        }</style> </head> <body ontouchstart="">  <div class="container" ontouchstart="return false" style="background-color: #FFFFFF"> <ul id="bank_Step"> <li> <span class="circle"></span> </li> <li> <span class="node"></span> </li> <li style="color: #414042"> <h5>您尚未在我司开立融资融券业务,</h5> <h5>无法使用本服务</h5> </li> <li> <span class="node"></span> </li> <li> <span class="circle"></span> </li> <li> <span class="node"></span> </li> <li> <span style="width:200px;display: inline-block"> <img src="../images/home.png" style="width: 100%"> </span> </li> <li style="color: #414042"> <h5>开通融资融券账户，需要您携带</h5> <h5>本人有效<span>身份证</span>前往<span>开户营业部办</span></h5> </li> </ul> <div id="foot_content"> 详情可拨打<span style="color:#fccfa9">95503</span>客服热线或与您的开户营业部联系 </div> </div> </body> <script src="../scripts/orientsec-OBMobi.2b9022bd.js"></script> <script src="../scripts/orientsec-OBMobi-style.e6849440.js"></script> </html>
+            margin-top: 22%;
+        }
+    </style>
+</head>
+<body ontouchstart="">
+    <!--<div class="init-loading page-loading"><i class="loading-progress">悦享投资之美</i></div>-->
+    <div class="container" ontouchstart="return false;" style="background-color: #FFFFFF">
+        <ul id="bank_Step">
+            <li>
+                <span class="circle"></span>
+            </li>
+            <li>
+                <span class="node"></span>
+            </li>
+            <li style="color: #414042;">
+                <h5>您尚未在我司开立融资融券业务,</h5>
+                <h5 style="margin-bottom:5px;">无法使用本服务</h5>
+            </li>
+            <li>
+                <span class="node"></span>
+            </li>
+            <li>
+                <span class="circle"></span>
+            </li>
+            <li>
+                <span class="node"></span>
+            </li>
+            <li>
+                <span style="width:200px;display: inline-block">
+                    <img src="../images/home.png" style="width: 100%">
+                </span>
+            </li>
+            <li style="color: #414042;">
+                <h5 style="margin-top:10px;">开通融资融券账户，需要您携带</h5>
+                <h5>本人有效<span>身份证</span>前往<span>开户营业部办理</span></h5>
+            </li>
+        </ul>
+        <div id="foot_content">
+            详情可拨打<span style="color:#F58220">95503</span>客服热线或与您的开户营业部联系
+        </div>
+    </div>
+</body>
+<!-- build:js scripts/orientsec-OBMobi.js -->
+<script src="../orientsec-OBMobi.js"></script>
+<!-- endbuild -->
+<!-- build:js scripts/orientsec-OBMobi-style.js -->
+<script src="../orientsec-OBMobi-style.js"></script>
+<!-- endbuild -->
+</html>

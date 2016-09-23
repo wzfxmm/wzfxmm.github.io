@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
-    <title>东方证券·微信账户绑定</title>
-    <meta name="description" content="东方证券·微信账户绑定">
+    <title>东方证券·微信账户绑定结果</title>
+    <meta name="description" content="东方证券·微信账户绑定结果">
     <link rel="icon" type="images/x-icon" href="../favicon.ico">
     <link rel="apple-touch-icon" href="../apple-touch-icon.png">
     <meta content="yes" name="apple-mobile-web-app-capable">
@@ -42,49 +42,6 @@
     <div class="init-loading page-loading"><i class="loading-progress">悦享投资之美</i></div>
     <div class="container"></div>
 
-    <!--初始化微信账户绑定视图-->
-<script type="text/html" id="tpl_init">
-<section class="ui-container">
-    <div class="ui-form">
-        <div class="ui-form-item ui-border-b">
-            <label class="size-14">
-                微信昵称
-            </label>
-            <input class="color-101010 size-14" type="text" placeholder="" readonly="readonly" value="XXXXXX1">
-        </div>
-        <div class="ui-form-item ui-border-b">
-            <label class="size-14">
-                账号
-            </label>
-            <input class="color-101010 size-14" type="tel" placeholder="请输入资金账号" id="txtFundAccount" maxlength="8">
-        </div>
-        <div class="ui-form-item ui-border-b">
-            <label class="size-14">
-                密码
-            </label>
-            <input class="color-101010 size-14" type="text" placeholder="请输入交易密码" id="txtPassword" maxlength="8">
-            <!--<a  class="ui-icon-close">-->
-            <!--</a>-->
-        </div>
-    </div>
-    <section class="ui-container_section-m10">
-        <div class="ui-form-item-checkbox padding-lr-10">
-            <label class="ui-checkbox">
-                <input type="checkbox" name="isRead" value="1">
-            </label>
-            <p class="size-11 color-818285">我已阅读并同意<a>《微信服务协议》</a></p>
-        </div>
-    </section>
-    <section class="ui-container_section-m40">
-        <div class="ui-btn-wrap">
-            <button id="btnConfirm" class="confirm disable">
-                确定
-            </button>
-        </div>
-    </section>
-</section>
-</script>
-
     <!--初始化微信账户绑定结果视图-->
 <script type="text/html" id="tpl_result">
 <ul class="bindResult" style="height: 100%">
@@ -120,7 +77,7 @@
     <li>
         <div id="ui-footer" class="ui-footer ui-footer-stable ui-btn-group">
             <div class="ui-row-flex">
-                <div class="ui-col ui-col" onclick="alert('111');" style="color: #818285;">查看更多绑定</div>
+                <div id="btnBindMoreAccounts" class="ui-col ui-col" style="color: #818285;">绑定更多账户</div>
             </div>
         </div>
     </li>
@@ -138,47 +95,52 @@
             <h6 class="color-818285">融资融券账户<span class="margin-l-15"><%= creditAccount%></span></h6>
             <% } %>
         </div>
+        <% if(!!!hidden){ %>
         <div class="ui-col bind_btnui">
             <% if(isBindWechat == '0'){ %>
-            <input class="bind_btn" type="button" value="绑定"/>
+            <input data-id="<%= id%>" class="bind_btn" type="button" value="绑定"/>
             <% } else { %>
-            <input class="bind_btn" type="button" value="解绑"/>
+            <input data-id="<%= id%>" class="bind_btn" type="button" value="解绑"/>
             <% } %>
         </div>
+        <% } %>
     </div>
 </li>
 </script>
 
-    <!--非初始化微信账户绑定视图-->
-<script type="text/html" id="tpl_noInit">
-<ul class="list_content">
-    <li class="ui-border-b userInfo ui-whitespace">
-        <div class="ui-border-b">
-            <span class="margin-l-10">微信昵称</span>
-            <span class="margin-l-25" id="lblNickName"></span>
+    <!--绑定微信账户视图-->
+<script type="text/html" id="tpl_bind">
+<section class="bindMain">
+    <ul>
+        <li class="ui-border-b">
+            <div>
+                <h5>资金账户<span id="txtFundAccount"></span></h5>
+                <h6 id="lblCreditAccount"></h6>
+            </div>
+        </li>
+        <li>
+            <div class="ui-form">
+                <div class="ui-form-item ui-border-b">
+                    <label class="size-14 color-101010 padding-l-10">
+                        密码
+                    </label>
+                    <input class="color-101010 size-14" type="text" id="txtPassword" placeholder="请输入交易密码">
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="padding-10" style="text-align: center">
+        <!--<i class="demo-icon color-f58220 margin-r-0">&#xe801;</i>-->
+        <!--<span class="size-11 color-818285">若您已有资金账号42573254开立了融资融券账号，两个账号将同时绑定。</span>-->
+    </div>
+    <div>
+        <div class="ui-btn-wrap">
+            <button class="confirm" id="btnConfirm" disabled="disabled">
+                确定
+            </button>
         </div>
-        <div>
-            <span class="margin-l-10">客户姓名</span>
-            <span class="margin-l-25" id="lblClientName"></span>
-        </div>
-    </li>
-    <li class="ui-border-b">
-        <h6 class="color-818285">已绑定账号</h6>
-        <ul class="ui-list ui-list-pure ui-border-b" id="bindAccounts">
-
-        </ul>
-    </li>
-    <li class="ui-border-b">
-        <h6 class="color-818285">未绑定账号</h6>
-        <ul class="ui-list ui-list-pure ui-border-b" id="noBindAccounts">
-
-        </ul>
-    </li>
-    <li class="text-center ui-whitespace margin-t-10">
-        <i class="demo-icon color-f58220 vertical-bottom margin-r-0">&#xe801;</i>
-        <span class="size-11 color-818285">若您所选账户开通对应的信用账户，那么两个账户将同时绑定</span>
-    </li>
-</ul>
+    </div>
+</section>
 </script>
 
     <!-- build:js scripts/orientsec-OBMobi-style.js -->
@@ -189,8 +151,8 @@
     <script src="../orientsec-OBMobi-passGuard-style.js"></script>
     <!-- endbuild -->
 
-    <!-- build:js scripts/account/binding/style.js -->
-    <script src="../scripts/modules/account/binding/style.js"></script>
+    <!-- build:js scripts/account/bindResult/style.js -->
+    <script src="../scripts/modules/account/bindResult/style.js"></script>
     <!-- endbuild -->
 
     <!-- build:js scripts/orientsec-OBMobi.js -->
@@ -205,9 +167,8 @@
     <script src="../orientsec-OBMobi-dataBinding.js"></script>
     <!-- endbuild -->
 
-    <!-- build:js scripts/account/binding/main.js -->
-    <script src="../scripts/modules/account/binding/viewController.js"></script>
+    <!-- build:js scripts/account/bindResult/main.js -->
+    <script src="../scripts/modules/account/bindResult/viewController.js"></script>
     <!-- endbuild -->
-
 </body>
 </html>
