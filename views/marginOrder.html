@@ -22,7 +22,7 @@
             width:100%;
             height:100%;
             display:table;
-            transition:opacity .3s ease
+            transition:opacity .7s ease
         }
         .init-loading i{
             display:table-cell;
@@ -40,12 +40,12 @@
 </head>
 <body>
     <div class="init-loading page-loading"><i class="loading-progress">悦享投资之美</i></div>
-    <div class="container"></div>
+    <div class="container" style="overflow: hidden" ontouchstart="return false;"></div>
 <script type="text/html" id="tpl_main">
 <section  style="background: #F5F5F7">
     <ul class="ul-moneyInfo padding-lrb-10 size-12" id="ulMarginInfo">
         <li class="ul-moneyInfo_title color-white">
-            <i class="demo-icon ul-moneyInfo_title ">&#xe803;</i>
+            <i class="fontello-icon icon-user ul-moneyInfo_title"></i>
             <span class="color_EBEBEB">信用账户<span id="lblFundAccount"></span></span>
         </li>
         <li>
@@ -64,7 +64,7 @@
     </ul>
     <div class="ui-tab  margin-t-10" id="tabOrder">
         <ul id="ui-tab_li" class="ui-tab-nav ui-border-b size-15">
-            <li class="tab current" data-curpage="0" id="rzTab">融资仓单</li>
+            <li class="tab current" data-curpage="0" id="rzTab" actived="true">融资仓单</li>
             <li class="tab" data-curpage="1" id="rqTab">融券仓单</li>
         </ul>
         <ul class="ui-tab-content  color-101010" id="ui-tab-content" style="width:200%">
@@ -74,9 +74,9 @@
                                 <span>
                                     未来30日 融资应还本金
                                 </span>
-                        <div class="select">
+                        <div class="select" id="rzTimeSelect">
                             <span class="tirangle"></span>
-                            <span class="date">30日</span>
+                            <span class="date"><span id="rzday">30</span><span>日</span></span>
                         </div>
                     </div>
                 </div>
@@ -90,9 +90,9 @@
                                 <span>
                                     未来30日 融资应还股2
                                 </span>
-                        <div class="select">
+                        <div class="select" id="rqTimeSelect">
                             <span class="tirangle"></span>
-                            <span class="date">30日</span>
+                            <span class="date"><span id="rqday">30</span><span>日</span></span>
                         </div>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
     <div id="bell" class="bell">
         <span id="scale"></span>
             <span class="bell_content">
-                <i class="demo-icon bell_i">&#xe802;</i>
+                <i class="fontello-icon icon-bell bell_i"></i>
                 <span>订阅</span>
             </span>
     </div>
@@ -123,217 +123,85 @@
 <section id="more_list">
     <div class="ui-tab ui-mtab" id="tabOrderList">
         <ul id="ui-tab_mli" class="ui-tab-nav ui-border-b size-15">
-            <li class="mtab current" data-curpage="0">融资仓单</li>
-            <li class="mtab" data-curpage="1">融券仓单</li>
+            <li class="mtab current" id="rzListTab" data-curpage="0">融资仓单</li>
+            <li class="mtab" id="rqListTab" data-curpage="1">融券仓单</li>
         </ul>
-        <ul class="ui-tab-content color-101010" id="ui-tab-mcontent" style="width:200%">
+        <ul class="ui-tab-content color-101010" id="ui-tab-mcontent" style="width:200%;">
             <li class="current">
                 <div  class="current_title">
                     <div class="ui-border-b tipInfo size-14">
-                                <span>
-                                    未来30日 融资应还本金
-                                </span>
-                        <div class="select">
+                        <span>
+                            未来30日 融资应还本金
+                        </span>
+                        <div class="select" id="rzmTimeSelect">
                             <span class="tirangle"></span>
-                            <span class="date">30日</span>
+                            <span class="date"><span id="rzmday">30</span><span>日</span></span>
                         </div>
                     </div>
                 </div>
                 <div id="tab1_mcontent" class="padding-tb-10">
-                    <ul>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
+                    <ul id="rzmList">
+
                     </ul>
                 </div>
             </li>
             <li class="current">
                 <div  class="current_title">
                     <div class="ui-border-b tipInfo size-14">
-                                <span>
+                        <span>
                                     未来30日 融资应还股2
-                                </span>
-                        <div class="select">
+                        </span>
+                        <div class="select" id="rqmTimeSelect">
                             <span class="tirangle"></span>
-                            <span class="date">30日</span>
+                            <span class="date"><span id="rqmday">30</span><span>日</span></span>
                         </div>
                     </div>
                 </div>
                 <div id="tab2_mcontent" class="padding-tb-10">
-                    <ul>
-                        <li>
-                            <h5>100,000股 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000股 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000股 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000股 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000股 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000股 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000股 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000股 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000股 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000股 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000股 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000股 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000股 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000股 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
-                        <li>
-                            <h5>100,000.00元 <span>(东方证券)</span></h5>
-                            <h6 class="timeColor">2016/09/09</h6>
-                        </li>
+                    <ul id="rqmList">
+
                     </ul>
                 </div>
+            </li>
+            </ul>
+        </div>
 </section>
 </script>
 
 <script type="text/html" id="tpl_listCell">
-
-    <li>
-        <h5>
-            <%=yetPaybackAmt%>元
-            <span>(<%=secName%>)</span>
-            <span class="arrears">已逾期</span>
-        </h5>
-        <h6 class="timeColor">2016/09/09</h6>
-    </li>
-
+<%
+    for(var i=0;i<fundAccount.length;i++){%>
+        <li>
+            <h5>
+                <%
+                if(activedTab=='0'){%>
+                <%=fundAccount[i].yetPaybackAmt%>元
+                <%}else{%>
+                <%=fundAccount[i].yetPaybackVol%>股
+                <%}
+                %>
+                <span>(<%=fundAccount[i].secName%>)</span>
+                <span class="arrears">已逾期</span>
+            </h5>
+            <h6 class="timeColor">2016/09/09</h6>
+        </li>
+        <%
+        if(isHaveMore&&i==fundAccount.length-1){%>
+        <li>
+            <%if(activedTab=='0'){%>
+            <div class="seeMore" id="rz_more" data-curpage="0">
+                查看更多
+            </div>
+            <%}else{%>
+            <div class="seeMore" id="rq_more" data-curpage="1">
+                查看更多
+            </div>
+            <%}%>
+        </li>
+        <%}
+        %>
+    <%}
+%>
 </script>
 </body>
 <!-- build:js scripts/orientsec-OBMobi.js -->
